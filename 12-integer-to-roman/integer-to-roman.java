@@ -11,15 +11,18 @@ class Solution {
         int hundred = (num/100)%10;
         int ten = (num/10)%10;
         int one = num%10;
-        while(n!=0){
-            n/=10;
-            d++;
-        }
         String result;
-        if(d==4)result = thus[thousand] + hund[hundred ] + tens[ten] + ones[one];
-        else if(d==3)result = hund[hundred ] + tens[ten] + ones[one];
-        else if(d==2)result = tens[ten] + ones[one];
-        else result = ones[one];
+
+        result = thus[thousand] + hund[hundred ] + tens[ten] + ones[one];
+        
+        // while(n!=0){
+        //     n/=10;
+        //     d++;
+        // }
+        // if(d==4)result = thus[thousand] + hund[hundred ] + tens[ten] + ones[one];
+        // else if(d==3)result = hund[hundred ] + tens[ten] + ones[one];
+        // else if(d==2)result = tens[ten] + ones[one];
+        // else result = ones[one];
 
         return result;
 
