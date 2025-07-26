@@ -21,12 +21,6 @@ class Solution {
                     return false;
                 }
             }
-            // else{
-                
-            // if(ch==')' && Stk.peek()=='(') Stk.pop();
-            // if(ch=='}' && Stk.peek()=='{') Stk.pop();
-            // if(ch==']' && Stk.peek()=='[') Stk.pop();
-            // }
         }
         return((Stk.isEmpty()));
     }
