@@ -5,8 +5,8 @@ class Solution {
         int i=0; //itarative
         int n = prices.length; 
         while(i!=n){
-            minBuy = Math.min(minBuy,prices[i]);
-            maxProfit=Math.max(maxProfit,prices[i]-minBuy);
+            if(prices[i]<minBuy)minBuy = Math.min(minBuy,prices[i]);
+            else maxProfit=Math.max(maxProfit,prices[i]-minBuy);
             i++;
         }
         return maxProfit;
