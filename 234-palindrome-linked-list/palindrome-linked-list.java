@@ -11,7 +11,7 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
         //Brute Force approch using stack
-        
+        if(head.next==null || head == null)return true;    
         Stack <Integer> st = new Stack<>();
         ListNode ptr = head;
         int temp;
