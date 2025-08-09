@@ -1,30 +1,37 @@
 class Solution {
     public String frequencySort(String s) {
-       HashMap <Character,Integer> map  = new HashMap <>();
-
-       List<Character>[] buckets = new ArrayList[s.length() + 1];
-        for (int i = 0; i <= s.length(); i++) {
+        int[] freq = new int[256]; // fixed size for ASCII
+        int maxFreq = 0;
+        
+        // Step 1: Count frequencies
+        for (char c : s.toCharArray()) {
+            freq[c]++;
+            maxFreq = Math.max(maxFreq, freq[c]);
+        }
+        
+        // Step 2: Create buckets
+        List<Integer>[] buckets = new List[maxFreq + 1];
+        for (int i = 0; i <= maxFreq; i++) {
             buckets[i] = new ArrayList<>();
         }
-
-       for(int i=0; i<s.length();i++) {
-            char ch = s.charAt(i);
-            if(map.containsKey(ch))map.put(ch,map.get(ch)+1);
-            else map.put(ch,1);
-       }
-       for(Map.Entry<Character,Integer> entry : map.entrySet()){
-        int freq = entry.getValue();
-        char ch = entry.getKey();
-        buckets[freq].add(ch);
-       }
-        StringBuilder ns = new StringBuilder();
-        for (int i = buckets.length - 1; i >= 1; i--) {  // skip bucket[0]
-            for (char ch : buckets[i]) {
-                for (int count = 0; count < i; count++) {
-                    ns.append(ch);
+        
+        // Step 3: Fill buckets
+        for (int c = 0; c < 256; c++) {
+            if (freq[c] > 0) {
+                buckets[freq[c]].add(c);
+            }
+        }
+        
+        // Step 4: Build output
+        StringBuilder sb = new StringBuilder();
+        for (int i = maxFreq; i >= 1; i--) {
+            for (int code : buckets[i]) {
+                for (int k = 0; k < i; k++) {
+                    sb.append((char) code);
                 }
             }
         }
-        return ns.toString();
+        
+        return sb.toString();
     }
 }
