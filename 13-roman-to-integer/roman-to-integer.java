@@ -20,7 +20,6 @@ class Solution {
                 sum = sum + map.get(s.charAt(i));
             }
         }
-        sum += map.get(s.charAt(s.length()-1));
-        return sum;
+        return (sum + map.get(s.charAt(s.length()-1)));
     }
 }
