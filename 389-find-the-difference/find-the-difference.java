@@ -5,7 +5,7 @@ class Solution {
             ch ^= s.charAt(i);
         }
         for(int i = 0 ; i<t.length(); i++){
-            ch = (char)(ch ^ t.charAt(i));
+            ch ^= t.charAt(i);
         }
         return ch;
     }
