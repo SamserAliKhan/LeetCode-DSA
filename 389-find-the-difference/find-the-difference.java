@@ -1,12 +1,15 @@
 class Solution {
     public char findTheDifference(String s, String t) {
         char ch = 0;
-        for(int i = 0 ; i<s.length(); i++){
-            ch ^= s.charAt(i);
+
+        // XOR all characters from both strings together
+        for (char cs : s.toCharArray()) {
+            ch ^= cs;
         }
-        for(int i = 0 ; i<t.length(); i++){
-            ch ^= t.charAt(i);
+        for (char ct : t.toCharArray()) {
+            ch ^= ct;
         }
+        
         return ch;
     }
 }
