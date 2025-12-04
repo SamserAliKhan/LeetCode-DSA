@@ -1,26 +1,31 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if(s.length() != t.length()) {
-            return false;
-        }
-        HashMap<Character, Character> map = new HashMap<>();
-        
-        for(int i = 0; i < s.length(); i++) {
-            char original = s.charAt(i);
-            char replacement = t.charAt(i);
+        if(s.length() != t.length()) return false;
 
-            if(map.containsKey(original)) {
-                if(map.get(original) != replacement) {
-                    return false;
-                }
-            } else {
-                // Note: For full isomorphism, you also need to check if 'replacement' is already mapped to another character.
-                if(map.containsValue(replacement)) {
-                     return false;
-                }
-                map.put(original, replacement);
+        // Arrays to store the mappings. 
+        // We use size 256 to cover standard ASCII characters.
+        char[] mapS = new char[256];
+        char[] mapT = new char[256];
+
+        for(int i = 0; i < s.length(); i++) {
+            char charS = s.charAt(i);
+            char charT = t.charAt(i);
+
+            // Case 1: If we have seen charS before, it MUST map to the same charT
+            if(mapS[charS] != 0 && mapS[charS] != charT) {
+                return false;
             }
+
+            // Case 2: If we have seen charT before, it MUST map to the same charS
+            if(mapT[charT] != 0 && mapT[charT] != charS) {
+                return false;
+            }
+
+            // If neither has been seen, create the mapping
+            mapS[charS] = charT;
+            mapT[charT] = charS;
         }
+
         return true;
     }
 }
